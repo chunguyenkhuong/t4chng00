@@ -33,6 +33,21 @@ var courseInfo = [
 	},
 ];
 
+var courseGradeInfo = [
+	{
+	Name: "Kimmo", CourseID: "D1", Grade: 5, StudentID: 1
+	},
+	{
+	Name: "Sebastian", CourseID: "D1", Grade: 3, StudentID: 2
+	},
+	{
+	Name: "Denial", CourseID: "D1", Grade: 2, StudentID: 3
+	},
+	{
+	Name: "Janne", CourseID: "D1", Grade: 4, StudentID: 4
+	},
+];
+
 //**** student part
 exports.getStudent = function() 
 {
@@ -119,4 +134,48 @@ exports.delCourseId = function(id)
 exports.addCourse = function(course)
 {
     courseInfo.push(course);
+}
+
+//**** Course Grade part
+
+exports.getCourseGrade = function() 
+{
+    return courseGradeInfo;
+}
+
+
+exports.getCourseGradeId = function(id)
+{
+    return courseGradeInfo.filter(function(grade){
+        if(grade.StudentID == id)
+        {
+            return grade;
+        }
+    });
+}
+
+exports.updateCourseGradeId = function(id, newGrade, newCourseID)
+{
+    return courseGradeInfo.filter(function(courseGrade){
+        if(courseGrade.StudentID == id)
+        {
+			courseGrade.Grade = newGrade;
+			courseGrade.CourseID = newCourseID;
+        }
+    });
+}
+
+exports.delCourseGradeId = function(id)
+{
+    return courseGradeInfo.filter(function(coursegrade,index){
+        if(coursegrade.StudentID == id)
+        {
+            courseGradeInfo.splice(index,1);
+        }
+    });
+}
+
+exports.addCourseGrade = function(grade)
+{
+    courseGradeInfo.push(grade);
 }

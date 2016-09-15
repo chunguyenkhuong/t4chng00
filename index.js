@@ -79,6 +79,39 @@ app.delete('/course/:id', function(req, res)
 	res.send("course deleted");
 });
 
+//**** Course grade part
+
+app.get('/grade', function(req, res) 
+{
+	res.json(inventory.getCourseGrade());
+});
+
+// get course grade by ID
+
+app.get('/grade/:id', function(req, res) 
+{
+	res.json(inventory.getCourseGradeId(req.params.id));
+});
+
+app.post('/grade', function(req, res) 
+{
+	inventory.addCourseGrade(req.body);
+    res.sendStatus(201);
+});
+
+app.put('/grade/:id', function(req, res) 
+{
+	inventory.updateCourseGradeId(req.params.id, req.body.Grade, req.body.CourseID)
+	res.send("Course Grade updated");
+});
+
+app.delete('/grade/:id', function(req, res) 
+{
+	inventory.delCourseGradeId(req.params.id)
+	res.send("Course Grade deleted");
+});
+
+
 app.listen(app.get('port'), function() 
 {
 
